@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You are using Chromium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Patrick Hand", cursive;
+            margin: 40px;
+            background-color: #432542;
+            color: #fcd3ff;
+        }
+        .widget {
+            border: 4px solid #000000;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 15px;
+            background-color: #3291b9;
+        }
+        .description {
+            color: #555;
+            font-size: 0.9em;
+        }
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function() {
+        let countdown = 10; // 10 seconds countdown
+        const countdownElement = document.getElementById('countdown');
+        const continueButton = document.getElementById('continueButton');
+        const countdownInterval = setInterval(function() {
+            countdownElement.textContent = countdown + ' seconds remaining';
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                continueButton.disabled = false;
+                countdownElement.textContent = ''; // Clear countdown display
+            }
+        }, 1000); // Update every second
+    };
+</script>
+<body>
+    <h1>It looks like you are using a Chromium browser.</h1>
+    <p>It looks like you're using a Chromium-based browser, such as Chrome, Edge, Opera, etc. 
+        (Brave is an exception)
+        Using non-Chromium browsers like Firefox can help protect your privacy, as Chromium-based browsers are often linked to data collection by Google.
+        Consider switching to alternatives to help your online privacy.
+    </p>
+    <div class="widget">
+        <p class="description">Download non-Chromium browsers now:</p>
+        <a href="https://github.com/gaeulbyul/non-webkit" target="_blank">Download Now</a>
+    </div>
+    <p id="countdown">10 seconds remaining</p>
+    <a href="index.html">
+        <button id="continueButton" disabled>Continue anyway (currently broken lol)</button>
+    </a>
+</body>
+</html>

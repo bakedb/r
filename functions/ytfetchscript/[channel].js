@@ -37,7 +37,17 @@ read -p "Download as MP3? (Y/n): " ANSWER
 case "$ANSWER" in
   [Yy]* | "" )
     echo "Downloading..."
-    yt-dlp -x --audio-format mp3 "$VIDEO_URL"
+
+    # Determine download directory
+    if [ -d "$HOME/Music" ]; then
+      DOWNLOAD_DIR="$HOME/Music"
+    else
+      DOWNLOAD_DIR="$HOME"
+    fi
+
+    echo "Saving to: $DOWNLOAD_DIR"
+
+    yt-dlp -x --audio-format mp3 -o "$DOWNLOAD_DIR/%(title)s.%(ext)s" "$VIDEO_URL"
     ;;
   * )
     echo "Cancelled."
